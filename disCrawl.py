@@ -13,7 +13,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import exc
 from sqlalchemy import literal
 from sqlalchemy.orm import sessionmaker
-from SQLalchemy_declarative import Base, DCDistance, DCSummary
+from NeissDist_declarative import Base, DCDistance, DCSummary
 
 
 def main():
