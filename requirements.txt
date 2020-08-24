@@ -1,7 +1,2 @@
 biopython
-pathos
 sqlalchemy
-plotly
-numpy
-pandas
-soedinglab_pdbx
