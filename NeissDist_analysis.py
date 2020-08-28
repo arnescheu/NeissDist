@@ -1,7 +1,7 @@
 import time
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from SQLalchemy_declarative import CompDistance, Sub2DistanceUnique
+from SQLalchemy_declarative import CompDistanceUnique, Sub2DistanceUnique
 
 def interrogate_disCrawl(db_input, cutoff, input_queue):
     result_queue = []
@@ -50,11 +50,6 @@ def distance_series(db_input, cutoff, db_table, min_type, cnt_star, cnt_pideq, d
         pass
     else:
         parametered_query = parametered_query.filter(db_table.cnt_pideq == cnt_pideq)
-
-    # parametered_query = parametered_query.filter(CompDistance.min_type == 'A') #all
-    # parametered_query = parametered_query.filter(CompDistance.min_type == 'I0').filter(CompDistance.cnt_star == 2).filter(CompDistance.cnt_pideq==1) #intra
-    # parametered_query = parametered_query.filter(CompDistance.min_type == 'I1E0')#.filter(CompDistance.cnt_pideq == 2) #hetero/inter
-    # parametered_query = parametered_query.filter(CompDistance.min_type == 'I1E1') #homo/inter
 
     parametered_query = parametered_query.order_by(db_table.distance)
     parametered_count = parametered_query.count()
@@ -116,7 +111,7 @@ if __name__ == "__main__":
 
     # input_queue to interrogate NeissDist for Figure 2d
     """
-        input_queue = (CompDistance, [("NI", False, False, "NZ", False), ("NI", 1, False, "NZ", False), ("NI", 2, False, "NZ", False), ("NI", 2, 1, "NZ", False), ("NI", 2, 2, "NZ", False),
+        input_queue = (CompDistanceUnique, [("NI", False, False, "NZ", False), ("NI", 1, False, "NZ", False), ("NI", 2, False, "NZ", False), ("NI", 2, 1, "NZ", False), ("NI", 2, 2, "NZ", False),
                    ("NI", 3, False, "NZ", False),
                    ("NIE", False, False,"NZ", 0), ("NIE", 1, False,"NZ", 0), ("NIE", 2, False,"NZ", 0), ("NIE", 2, 1,"NZ", 0), ("NIE", 2, 2,"NZ", 0),
                    ("NIE", 3, False,"NZ", 1), ("NIE", False, False,"NZ", 1), ("NIE", 1, False,"NZ", 1), ("NIE", 2, False,"NZ", 1), ("NIE", 2, 1,"NZ", 1),
