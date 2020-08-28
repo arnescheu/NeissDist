@@ -101,7 +101,7 @@ def write_results(result_queue, outfile):
 if __name__ == "__main__":
     db_input = "sqlite:///disCrawl.db"
     outfile = "outfile.txt"
-    cutoff = 2
+    cutoff = 501 #cutoff value in 0.1 Angstrom (e.g 501 = 50.1 Angstrom)
 
     # input_queue to interrogate NeissDist for Figure 2c
     """input_queue = (Sub2DistanceUnique,[("N", False, False, "NZ", False), ("NI", False, False, "NZ", False), ("NIE", False, False, "NZ", 0),
