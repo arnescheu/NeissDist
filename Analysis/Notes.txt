@@ -1,5 +1,5 @@
 1) Set up tables
-	[To enter]
+	See create statements
 2) Run subdistance.txt in DB-browser
 	This redoes naming system for min_type to include all categories which were preset, not repeating their value
 	Start run 2020-05-03: 4pm
