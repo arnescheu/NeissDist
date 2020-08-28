@@ -57,7 +57,7 @@ def distance_series(db_input, cutoff, db_table, min_type, cnt_star, cnt_pideq, d
     print("Time (s): ", time.time() - start_time, "\n")
     distance_range.append(("total", parametered_count))
     for i in range(0, cutoff):
-        distance_query = parametered_query.filter(Sub2DistanceUnique.distance < i / 10)
+        distance_query = parametered_query.filter(db_table.distance < i / 10)
         distance_count = distance_query.count()
         distance_range.append((i, distance_count))
         print(i / 10, distance_count)
@@ -103,26 +103,24 @@ if __name__ == "__main__":
     outfile = "outfile.txt"
     cutoff = 501
 
-    #Input_queue to interrogate NeissDist for Figure 2c
-    input_queue = (Sub2DistanceUnique,[("N", False, False, "NZ", False), ("NI", False, False, "NZ", False), ("NIE", False, False, "NZ", 0),
+    # input_queue to interrogate NeissDist for Figure 2c
+    """input_queue = (Sub2DistanceUnique,[("N", False, False, "NZ", False), ("NI", False, False, "NZ", False), ("NIE", False, False, "NZ", 0),
                    ("NIE", False, False, "NZ", 1)
         , ("N", False, False, "OH", False), ("NI", False, False, "OH", False), ("NIE", False, False, "OH", 0),
                    ("NIE", False, False, "OH", 1)])
+    """
 
     # input_queue to interrogate NeissDist for Figure 2d
-    """
-        input_queue = (CompDistanceUnique, [("NI", False, False, "NZ", False), ("NI", 1, False, "NZ", False), ("NI", 2, False, "NZ", False), ("NI", 2, 1, "NZ", False), ("NI", 2, 2, "NZ", False),
-                   ("NI", 3, False, "NZ", False),
-                   ("NIE", False, False,"NZ", 0), ("NIE", 1, False,"NZ", 0), ("NIE", 2, False,"NZ", 0), ("NIE", 2, 1,"NZ", 0), ("NIE", 2, 2,"NZ", 0),
-                   ("NIE", 3, False,"NZ", 1), ("NIE", False, False,"NZ", 1), ("NIE", 1, False,"NZ", 1), ("NIE", 2, False,"NZ", 1), ("NIE", 2, 1,"NZ", 1),
-                   ("NIE", 2, 2,"NZ", 1),
-                   ("NIE", 3, False,"NZ", 1), ("NI", False, False, "OH", False), ("NI", 1, False, "OH", False), ("NI", 2, False, "OH", False), ("NI", 2, 1, "OH", False), ("NI", 2, 2, "OH", False),
-                   ("NI", 3, False, "OH", False),
-                   ("NIE", False, False,"OH", 0), ("NIE", 1, False,"OH", 0), ("NIE", 2, False,"OH", 0), ("NIE", 2, 1,"OH", 0), ("NIE", 2, 2,"OH", 0),
-                   ("NIE", 3, False,"OH", 1), ("NIE", False, False,"OH", 1), ("NIE", 1, False,"OH", 1), ("NIE", 2, False,"OH", 1), ("NIE", 2, 1,"OH", 1),
-                   ("NIE", 2, 2,"OH", 1),
-                   ("NIE", 3, False,"OH", 1)])
-
-    """
+    input_queue = (CompDistanceUnique, [("NI", False, False, "NZ", False), ("NI", 1, False, "NZ", False), ("NI", 2, False, "NZ", False), ("NI", 2, 1, "NZ", False), ("NI", 2, 2, "NZ", False),
+               ("NI", 3, False, "NZ", False),
+               ("NIE", False, False,"NZ", 0), ("NIE", 1, False,"NZ", 0), ("NIE", 2, False,"NZ", 0), ("NIE", 2, 1,"NZ", 0), ("NIE", 2, 2,"NZ", 0),
+               ("NIE", 3, False,"NZ", 1), ("NIE", False, False,"NZ", 1), ("NIE", 1, False,"NZ", 1), ("NIE", 2, False,"NZ", 1), ("NIE", 2, 1,"NZ", 1),
+               ("NIE", 2, 2,"NZ", 1),
+               ("NIE", 3, False,"NZ", 1), ("NI", False, False, "OH", False), ("NI", 1, False, "OH", False), ("NI", 2, False, "OH", False), ("NI", 2, 1, "OH", False), ("NI", 2, 2, "OH", False),
+               ("NI", 3, False, "OH", False),
+               ("NIE", False, False,"OH", 0), ("NIE", 1, False,"OH", 0), ("NIE", 2, False,"OH", 0), ("NIE", 2, 1,"OH", 0), ("NIE", 2, 2,"OH", 0),
+               ("NIE", 3, False,"OH", 1), ("NIE", False, False,"OH", 1), ("NIE", 1, False,"OH", 1), ("NIE", 2, False,"OH", 1), ("NIE", 2, 1,"OH", 1),
+               ("NIE", 2, 2,"OH", 1),
+               ("NIE", 3, False,"OH", 1)])
 
     write_results(interrogate_disCrawl(db_input, cutoff, input_queue),outfile)
