@@ -4,7 +4,7 @@
 	This redoes naming system for min_type to include all categories which were preset, not repeating their value
 	Start run 2020-05-03: 4pm
 	End run 2020-05-03: Checked back 5:30, complete
-3) Make sub2distance2 (remove duplicates)
+3) Make sub2distance (remove duplicates)
 	DELETE FROM sub2distance WHERE pdb_id like "%%";
 	insert into sub2distance SELECT *, min(distance) from subdistance GROUP BY pdb_id, min_type, dynamic_name;
 4) #select lowest distance from sub2distance for all other than min_type "A" to later compare in pymol
