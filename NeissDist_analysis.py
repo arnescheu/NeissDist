@@ -64,7 +64,7 @@ def distance_series(db_input, cutoff, db_table, min_type, cnt_star, cnt_pideq, d
     print("Time (s): ", time.time() - start_time, "\n")
 
     in_session.close()
-    return
+    return distance_range
 
 def write_results(result_queue, outfile):
     results_reordered = [[], []]
@@ -101,7 +101,7 @@ def write_results(result_queue, outfile):
 if __name__ == "__main__":
     db_input = "sqlite:///disCrawl.db"
     outfile = "outfile.txt"
-    cutoff = 501
+    cutoff = 2
 
     # input_queue to interrogate NeissDist for Figure 2c
     """input_queue = (Sub2DistanceUnique,[("N", False, False, "NZ", False), ("NI", False, False, "NZ", False), ("NIE", False, False, "NZ", 0),
