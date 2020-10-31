@@ -3,7 +3,7 @@
 3) Make sub2distance (remove duplicates)
 	DELETE FROM sub2distance WHERE pdb_id like "%%";
 	insert into sub2distance SELECT *, min(distance) from subdistance GROUP BY pdb_id, min_type, poly_id_eq, dynamic_name;
-4) #select lowest distance from sub2distance for all other than min_type "A" to later compare in pymol
+4) Select lowest distance from sub2distance for all other than min_type "A" to later compare in pymol
 	DELETE FROM comp_distance WHERE pdb_id like "%%";
 	insert into comp_distance select *, min(distance), count(*), count(DISTINCT poly_id_eq) from sub2distance WHERE min_type != "N" GROUP BY pdb_id, dynamic_name;
 5) as 4, but only lowest hit from biological assemblies
