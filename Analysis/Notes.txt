@@ -10,7 +10,7 @@
 	DELETE FROM comp_distance_unique WHERE pdb_id like "%%";
 	insert into comp_distance_unique select *, min(distance), substr(pdb_id,1,4) as source_id from comp_distance GROUP BY source_id, dynamic_name;
 6) as 3, but only lowest hit from biological assemblies
-	DELETE FROM comp_distance_unique WHERE pdb_id like "%%";
+	DELETE FROM sub2distance_unique WHERE pdb_id like "%%";
 	insert into sub2distance_unique select *, min(distance), substr(pdb_id,1,4) as source_id from sub2distance GROUP BY source_id, min_type, poly_id_eq, dynamic_name;
 
 Explanation for N/NI/NIE, F/0/1 etc:
